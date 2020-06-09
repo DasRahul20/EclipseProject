@@ -14,6 +14,7 @@ public class Device {
 			String os = sc.nextLine();
 			String brand = sc.nextLine();
 			int price = Integer.parseInt(sc.nextLine());
+			phone[i]=new Phone(phoneId,os,brand,price);
 		}
 		String brand = sc.nextLine();
 		String os = sc.nextLine();
@@ -21,8 +22,11 @@ public class Device {
 		
 		int res = findPriceForGivenBrand(phone,brand);
 		
-		if(res>0)
+		if(res==0)
 			System.out.println("The given Brand is not available");
+		else
+			System.out.println(res);
+		
 		Phone obj = getPhoneIdBasedOnOs(phone,os);
 		
 	    if(obj==null)
