@@ -19,23 +19,27 @@ public class Device {
 		String os = sc.nextLine();
 		
 		int res = findPriceForGivenBrand(phone,brand);
+		
 		if(res>0)
 			System.out.println("The given Brand is not available");
 		Phone obj = getPhoneIdBasedOnOs(phone,os);
+		
 	    if(obj==null)
 	    	System.out.println("No phones are available with specified os and price range");
 	    else
 	    	System.out.println(obj.getPhoneId());
 	    }
+	
 		public static int findPriceForGivenBrand(Phone[] phone, String brand)
 		{
 		    //method logic
-			int i,j=0,sum=0;
-			for(i=0;i<phone.length;i++)
+			int j=0,sum = 0;
+			//enhanced for loop
+			for(Phone ob:phone)
 			{
-				if(phone[i].getBrand().equalsIgnoreCase(brand))
+				if(ob.getBrand().equalsIgnoreCase(brand))
 				{
-					sum=sum+phone[i].getPrice();
+					sum+=ob.getPrice();
 					j++;
 				}
 				else
@@ -47,8 +51,10 @@ public class Device {
 		public static Phone getPhoneIdBasedOnOs(Phone[] phone, String os)
 		{
 		    //method logic
-			int i,j=0;
+			
 			Phone temp = null;
+			
+			//enhanced for loop
 			for(Phone ob:phone)
 			{
 				if(ob.getOs().equalsIgnoreCase(os) && ob.getPrice()>=50000)
