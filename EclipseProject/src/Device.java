@@ -8,7 +8,7 @@ public class Device {
 		Phone[] phone = new Phone[4];
 		Scanner sc = new Scanner(System.in);
 		int i,j=0;
-		for(i=0;i<phone.length;i++)
+		for(i=0;i<4;i++)
 		{
 			int phoneId = Integer.parseInt(sc.nextLine());
 			String os = sc.nextLine();
@@ -17,6 +17,7 @@ public class Device {
 		}
 		String brand = sc.nextLine();
 		String os = sc.nextLine();
+		sc.close();
 		
 		int res = findPriceForGivenBrand(phone,brand);
 		
@@ -33,19 +34,18 @@ public class Device {
 		public static int findPriceForGivenBrand(Phone[] phone, String brand)
 		{
 		    //method logic
-			int j=0,sum = 0;
+			int sum = 0;
 			//enhanced for loop
 			for(Phone ob:phone)
 			{
 				if(ob.getBrand().equalsIgnoreCase(brand))
 				{
-					sum+=ob.getPrice();
-					j++;
-				}
-				else
-					return 0;
+					sum += ob.getPrice();				}	
 			}
-			return sum;
+			if(sum>0)
+				return sum;
+			else
+				return 0;
 		}
 
 		public static Phone getPhoneIdBasedOnOs(Phone[] phone, String os)
@@ -59,14 +59,15 @@ public class Device {
 			{
 				if(ob.getOs().equalsIgnoreCase(os) && ob.getPrice()>=50000)
 				{
+					temp=ob;
 					return ob;
 				}
 				
 			}
-			return null;
+			return temp;
 		}
 	
-}
+   }
 		class Phone
 		{
 		   
